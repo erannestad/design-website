@@ -1,0 +1,30 @@
+
+<header>
+  <div class="masthead">
+
+      <div class="max-w-lg mx-auto mt-6 px-4 text-center">
+        <h1 class="font-semibold text-3xl">It’s (j)ust (e)leventy and (t)ailwind</h1>
+        <p>…OK, and a few other things; it's still *really* small though.</p>
+      </div>
+
+      {% set currentUrl = page.url %}
+      <nav>
+        <ul role="list">
+          <li>
+            <a {% if currentUrl === '/' %}aria-current="page"{% endif %} href="/">Home</a>
+          </li>
+
+          {% for link in collections.pages %}
+          <li>
+            <a
+              {% if currentUrl === link.url %}aria-current="page"{% endif %}
+              href="{{ link.url }}">
+                {{ link.data.title }}
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+
+  </div>
+</header>
