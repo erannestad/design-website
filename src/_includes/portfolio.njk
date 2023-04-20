@@ -18,7 +18,8 @@
   {% include "components/header.njk" %}
   
   <body>
-    <main class="cmd:container md:mx-auto px-4">
+    <main class="w-full mt-20">
+      {{ page | log }}
       {{ content | safe }}
     </main>
   </body>

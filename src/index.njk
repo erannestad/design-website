@@ -3,29 +3,53 @@ layout: base.njk
 title: Home
 ---
 
+  <h2 class="font-semibold text-2xl my-8">Recent</h2>
+  <div class="block">
 
+      {% for post in collections.featured %}
+            <div class="grid grid-cols-1 md:grid-rows-2 md:grid-cols-12">
+                <div class="md:col-start-1 md:col-end-4">
+                  <h3 class="font-semibold"><a href="{{ post.url | url }}"> {{post.data.title}} </a></h3>
+                </div>  
+                <div class="md:col-start-1 md:col-end-7 md:row-start-2 md:row-end-3">
+                  <p> {{post.data.client}} </p>
+                  <p> {{post.data.projectDate | safe }} </p>
+                </div>
+                <div class="md:col-start-7 md:col-end-9">  
+                  <p> {{post.data.excerpt | safe }} </p>
+                </div>  
+                <div class="md:col-start-10 md:col-end-13">
+                  <img src="{{post.data.thumbnailPath | url }}"> </img>
+                </div>    
+            </div>    
+      {% endfor %}
 
-<table class="table-fixed w-full border-separate border-spacing-2 border border-slate-200 ">
-  <thead>
-    <tr class="text-left">
-      <th>Project Title</th>
-      <th>Client</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Thumbnail</th>
-    </tr>
-  </thead>
-  <tbody>
+  </div>
   
-        {% for post in collections.portfolio %}
-              <tr class="border border-slate-300 align-top">
-                <td><a href="{{ post.url | url }}"> {{post.data.title}} </a></td>
-                <td><p> {{post.data.client}} </p></td>
-                <td><p> {{post.data.description | safe }} </p></td>
-                <td><p> {{post.data.projectDate | safe }} </p></td>
-                <td><img src="{{post.data.thumbnailPath | url }}"> </img></td>
-              </tr>        
-        {% endfor %}
 
-  </tbody>
-</table>
+
+  <h2 class="font-semibold text-2xl my-8">Archive</h2>
+  <table class="table-fixed w-full border-separate border-spacing-2 border border-slate-200 ">
+    <thead>
+      <tr class="text-left">
+        <th>Project Title</th>
+        <th>Client</th>
+        {# <th>Description</th> #}
+        <th>Date</th>
+        {# <th>Thumbnail</th> #}
+      </tr>
+    </thead>
+    <tbody>
+    
+          {% for post in collections.portfolio %}
+                <tr class="border border-slate-300 align-top">
+                  <td><a href="{{ post.url | url }}"> {{post.data.title}} </a></td>
+                  <td><p> {{post.data.client}} </p></td>
+                  {# <td><p> {{post.data.excerpt | safe }} </p></td> #}
+                  <td><p> {{post.data.projectDate | safe }} </p></td>
+                  {# <td><img src="{{post.data.thumbnailPath | url }}"> </img></td> #}
+                </tr>        
+          {% endfor %}
+
+    </tbody>
+  </table>
